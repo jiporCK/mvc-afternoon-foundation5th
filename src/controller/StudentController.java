@@ -1,5 +1,6 @@
 package controller;
 
+import dao.StudentDao;
 import model.Student;
 import view.StudentView;
 
@@ -8,11 +9,11 @@ import java.util.Scanner;
 
 public class StudentController {
 
-    private final Student student;
+    private final StudentDao dao;
     private final StudentView studentView;
 
-    public StudentController(Student student, StudentView studentView) {
-        this.student = student;
+    public StudentController(StudentDao dao, StudentView studentView) {
+        this.dao = dao;
         this.studentView = studentView;
     }
 
@@ -29,13 +30,14 @@ public class StudentController {
         int day = Integer.parseInt(parts[2]);
         LocalDate dob = LocalDate.of(year, month, day);
 
-        student.setId(id);
-        student.setFullName(fullName);
-        student.setDateOfBirth(dob);
+        Student newStudent = new Student(id, fullName, dob);
+
+        dao.create(newStudent);
+
     }
 
     public void showData() {
-        studentView.displayStudent(student);
+        studentView.displayStudent(dao.getAll());
     }
 
 }

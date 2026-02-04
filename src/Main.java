@@ -1,4 +1,6 @@
 import controller.StudentController;
+import dao.StudentDao;
+import dao.StudentDaoImpl;
 import model.Student;
 import view.StudentView;
 
@@ -8,9 +10,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Student student = new Student();
+//        Student student = new Student();
+        StudentDao dao = new StudentDaoImpl();
         StudentView view = new StudentView();
-        StudentController controller = new StudentController(student, view);
+        StudentController controller = new StudentController(dao, view);
 
         controller.create(new Scanner(System.in));
         controller.showData();
