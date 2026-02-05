@@ -1,7 +1,7 @@
 package controller;
 
-import dao.StudentDao;
-import model.Student;
+import model.dao.StudentDao;
+import model.entities.Student;
 import view.StudentView;
 
 import java.time.LocalDate;

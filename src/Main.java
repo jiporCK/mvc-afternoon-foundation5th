@@ -1,7 +1,6 @@
 import controller.StudentController;
-import dao.StudentDao;
-import dao.StudentDaoImpl;
-import model.Student;
+import model.dao.StudentDao;
+import model.dao.StudentDaoImpl;
 import view.StudentView;
 
 import java.util.Scanner;

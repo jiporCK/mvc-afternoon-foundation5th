@@ -1,6 +1,6 @@
 package database;
 
-import model.Student;
+import model.entities.Student;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

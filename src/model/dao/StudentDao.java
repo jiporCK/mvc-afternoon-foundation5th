@@ -1,6 +1,6 @@
-package dao;
+package model.dao;
 
-import model.Student;
+import model.entities.Student;
 
 import java.util.List;
 

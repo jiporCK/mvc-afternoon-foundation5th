@@ -1,7 +1,7 @@
-package dao;
+package model.dao;
 
 import database.StudentDb;
-import model.Student;
+import model.entities.Student;
 
 import java.util.List;
 

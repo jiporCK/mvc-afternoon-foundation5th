@@ -1,8 +1,7 @@
 package view;
 
-import model.Student;
+import model.entities.Student;
 import org.nocrala.tools.texttablefmt.BorderStyle;
-import org.nocrala.tools.texttablefmt.CellStyle;
 import org.nocrala.tools.texttablefmt.Table;
 
 import java.util.List;
