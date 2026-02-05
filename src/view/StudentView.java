@@ -2,6 +2,7 @@ package view;
 
 import model.entities.Student;
 import org.nocrala.tools.texttablefmt.BorderStyle;
+import org.nocrala.tools.texttablefmt.CellStyle;
 import org.nocrala.tools.texttablefmt.Table;
 
 import java.time.LocalDate;
@@ -44,9 +45,31 @@ public class StudentView {
         System.out.println(table.render());
     }
 
+    public void displaySingleStudent(Student student) {
+        Table table = new Table(
+                3, BorderStyle.UNICODE_BOX_DOUBLE_BORDER
+        );
+        table.addCell("Student Details",
+                new CellStyle(CellStyle.HorizontalAlign.center),
+                3);
+        table.addCell("ID");
+        table.addCell(student.getId().toString(), 2);
+        table.addCell("Full Name");
+        table.addCell(student.getFullName(), 2);
+        table.addCell("Date of Birth");
+        table.addCell(student.getDateOfBirth().toString(), 2);
+
+        System.out.println(table.render());
+    }
+
     public Long showIdInput() {
-        System.out.print("[!] Enter id to remove: ");
+        System.out.print("[!] Enter id: ");
         return Long.parseLong(scanner.nextLine());
+    }
+
+    public String showNameInput() {
+        System.out.print("[!] Enter name to search: ");
+        return scanner.nextLine();
     }
 
     public int showMenuAndGetOption() {
@@ -54,6 +77,8 @@ public class StudentView {
                     1. Create
                     2. Display All Students
                     3. Remove Student
+                    4. Search By Name
+                    5. Update By Id
                     0. Exit""");
         System.out.print("Choose an option: ");
         return Integer.parseInt(scanner.nextLine());

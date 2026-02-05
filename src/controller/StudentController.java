@@ -34,6 +34,21 @@ public class StudentController {
         studentView.displayStudent(dao.getAll());
     }
 
+    public void update() {
+        Long id = studentView.showIdInput();
+        Student stuToUpdate = studentView.createStudent();
+
+        Student studentAfterUpdate = dao.updateById(id, stuToUpdate);
+
+        studentView.displaySingleStudent(studentAfterUpdate);
+    }
+
+    public void searchByName() {
+        String name = studentView.showNameInput();
+
+        studentView.displayStudent(dao.searchByName(name));
+    }
+
     public void run() {
         while (true) {
             int option = studentView.showMenuAndGetOption();
@@ -42,6 +57,8 @@ public class StudentController {
                 case 1 -> create();
                 case 2 -> showData();
                 case 3 -> remove();
+                case 4 -> searchByName();
+                case 5 -> update();
                 case 0 -> {
                     for (char ch : "Exiting...".toCharArray()) {
                         try {

@@ -10,5 +10,8 @@ public interface StudentDao {
     List<Student> getAll();
 
     boolean deleteById(Long id);
+    Student updateById(Long id, Student student);
+
+    List<Student> searchByName(String name);
 
 }
