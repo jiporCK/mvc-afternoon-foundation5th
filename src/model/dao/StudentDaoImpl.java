@@ -15,4 +15,12 @@ public class StudentDaoImpl implements StudentDao{
     public List<Student> getAll() {
         return StudentDb.students;
     }
+
+    @Override
+    public boolean deleteById(Long id) {
+        return StudentDb.students.removeIf(
+                student -> student.getId().equals(id)
+        );
+    }
+
 }

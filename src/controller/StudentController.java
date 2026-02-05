@@ -4,9 +4,6 @@ import model.dao.StudentDao;
 import model.entities.Student;
 import view.StudentView;
 
-import java.time.LocalDate;
-import java.util.Scanner;
-
 public class StudentController {
 
     private final StudentDao dao;
@@ -17,27 +14,47 @@ public class StudentController {
         this.studentView = studentView;
     }
 
-    public void create(Scanner scanner) {
-        System.out.print("Enter ID: ");
-        Long id = Long.parseLong(scanner.nextLine());
-        System.out.print("Enter Name: ");
-        String fullName = scanner.nextLine();
-        System.out.print("Enter date of birth(2000-04-12): ");
-        String dateOfBirth = scanner.nextLine();
-        String[] parts = dateOfBirth.split("-");
-        int year = Integer.parseInt(parts[0]);
-        int month = Integer.parseInt(parts[1]);
-        int day = Integer.parseInt(parts[2]);
-        LocalDate dob = LocalDate.of(year, month, day);
+    public void create() {
+        Student student = studentView.createStudent();
 
-        Student newStudent = new Student(id, fullName, dob);
+        dao.create(student);
+    }
 
-        dao.create(newStudent);
+    public void remove() {
+        Long id = studentView.showIdInput();
 
+        if(dao.deleteById(id)){
+            System.out.println("Removed Successfully.");
+        } else {
+            System.out.println("Failed to remove");
+        }
     }
 
     public void showData() {
         studentView.displayStudent(dao.getAll());
+    }
+
+    public void run() {
+        while (true) {
+            int option = studentView.showMenuAndGetOption();
+
+            switch (option) {
+                case 1 -> create();
+                case 2 -> showData();
+                case 3 -> remove();
+                case 0 -> {
+                    for (char ch : "Exiting...".toCharArray()) {
+                        try {
+                            Thread.sleep(200);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                        System.out.print(ch);
+                    }
+                    System.exit(0);
+                }
+            }
+        }
     }
 
 }

@@ -9,4 +9,6 @@ public interface StudentDao {
     void create(Student student);
     List<Student> getAll();
 
+    boolean deleteById(Long id);
+
 }
